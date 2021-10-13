@@ -7,6 +7,9 @@ class UserResponse:
         self._raw_input = input(prompt)
 
     def get_key(self):
+        if self._raw_input == "":
+            return None
+
         self._split_input = self._raw_input.split()
         return self._split_input[0]
 

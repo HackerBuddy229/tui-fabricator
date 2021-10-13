@@ -20,23 +20,20 @@ class TuiFabricator:
         key = response.get_key()
 
         if key is None:
-            print("Error 1")
+            self._default_error_handler("No key provided!")
             return
-            # TODO: Add error handling here
 
         # check key validity / get query response
         selected_response = self._try_fetch_query_response(key)
         if selected_response is None:
-            print("Error 2")
+            self._default_error_handler("Key did not match alternatives!")
             return
-            # TODO: Add error handling here
 
         # check arg validity[n.o/types]
         raw_args = response.get_args()
         if raw_args is None or len(raw_args) != selected_response.num_args:
-            print("Error 3")
+            self._default_error_handler("Argument error!")
             return
-            # TODO: Add error handling here
 
         args = ArgumentHandler.transform(selected_response.arg_types, raw_args)
 
@@ -46,10 +43,8 @@ class TuiFabricator:
         else:
             selected_response.f()
 
-
-    def query_repeat(self, exit_descriptor):
-        do_continue = True
-        while do_continue:
+    def query_repeat(self, exit_condition):
+        while exit_condition:
             self.query()
             # TODO: Fix exit condition
 
@@ -62,3 +57,7 @@ class TuiFabricator:
             if response.key == key:
                 return response
         return None
+
+    def _default_error_handler(self, msg):
+        print("ERROR:", msg)
+        self.query()

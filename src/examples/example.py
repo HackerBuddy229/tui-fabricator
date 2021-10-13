@@ -3,12 +3,14 @@ from QueryDescriptor import QueryDescriptor
 from QueryResponse import QueryResponse
 
 
+class ExitHelper()
+
 class BasicUtilityClass:
 
     @staticmethod
     def say_hi(args):
         amount_of_hi = args[0]
-        print("hi" * 5)
+        print("hi" * amount_of_hi)
 
     @staticmethod
     def say_by():
@@ -31,7 +33,8 @@ class BasicProgram:
         self.responses = [
             QueryResponse("hi", 1, [int], BasicUtilityClass.say_hi),
             QueryResponse("by", 0, [], BasicUtilityClass.say_by),
-            QueryResponse("fuck", 2, [None, None], BasicUtilityClass.say_fuck)
+            QueryResponse("fuck", 2, [None, None], BasicUtilityClass.say_fuck),
+            QueryResponse("exit", 0, [None, None], BasicUtilityClass.say_fuck)
         ]
 
         self.tui = TuiFabricator(self.descriptor, self.responses)
