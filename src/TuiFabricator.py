@@ -44,7 +44,7 @@ class TuiFabricator:
             selected_response.f()
 
     def query_repeat(self, exit_condition):
-        while exit_condition:
+        while exit_condition[0]:
             self.query()
             # TODO: Fix exit condition
 

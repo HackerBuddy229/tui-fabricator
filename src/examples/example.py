@@ -3,7 +3,12 @@ from QueryDescriptor import QueryDescriptor
 from QueryResponse import QueryResponse
 
 
-class ExitHelper()
+class ExitHelper:
+    exitCondition = [True]
+
+    def exit(self):
+        self.exitCondition[0] = False
+
 
 class BasicUtilityClass:
 
@@ -27,6 +32,8 @@ class BasicUtilityClass:
 class BasicProgram:
 
     def __init__(self):
+        self.exit_helper = ExitHelper()
+
         self.descriptor = QueryDescriptor()
         self.descriptor.showPrompt = True
 
@@ -34,13 +41,14 @@ class BasicProgram:
             QueryResponse("hi", 1, [int], BasicUtilityClass.say_hi),
             QueryResponse("by", 0, [], BasicUtilityClass.say_by),
             QueryResponse("fuck", 2, [None, None], BasicUtilityClass.say_fuck),
-            QueryResponse("exit", 0, [None, None], BasicUtilityClass.say_fuck)
+            QueryResponse("exit", 0, [], self.exit_helper.exit)
         ]
 
         self.tui = TuiFabricator(self.descriptor, self.responses)
 
     def run(self):
         self.tui.query()
+        self.tui.query_repeat(self.exit_helper.exitCondition)
 
 
 BasicProgram().run()
