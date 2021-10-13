@@ -16,33 +16,35 @@ class TuiFabricator:
             self._show_menu()
 
         # get key
-        response = UserResponse()
+        response = UserResponse(self._descriptor.prompt)
         key = response.get_key()
 
         if key is None:
-            print("Error")
+            print("Error 1")
             return
             # TODO: Add error handling here
 
         # check key validity / get query response
         selected_response = self._try_fetch_query_response(key)
         if selected_response is None:
-            print("Error")
+            print("Error 2")
             return
             # TODO: Add error handling here
 
         # check arg validity[n.o/types]
         raw_args = response.get_args()
         if raw_args is None or len(raw_args) != selected_response.num_args:
-            print("Error")
+            print("Error 3")
             return
             # TODO: Add error handling here
 
         args = ArgumentHandler.transform(selected_response.arg_types, raw_args)
 
         # execute if all is correct
-
-        selected_response.f(args)
+        if selected_response.num_args > 0:
+            selected_response.f(args)
+        else:
+            selected_response.f()
 
 
     def query_repeat(self, exit_descriptor):

@@ -5,9 +5,12 @@ class ArgumentHandler:
     def transform(types, raws):
         product = []
 
-        for raw in range(len(raws)):
-            try:
-                product.append(types[raw](raws[raw]))
-            except:
-                return None
+        for raw_index in range(len(raws)):
+            if types[raw_index] is None:
+                product.append(raws[raw_index])
+            else:
+                try:
+                    product.append(types[raw_index](raws[raw_index]))
+                except:
+                    return None
         return product

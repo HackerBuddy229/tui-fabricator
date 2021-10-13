@@ -7,8 +7,8 @@ class UserResponse:
         self._raw_input = input(prompt)
 
     def get_key(self):
-        self._split_input = self._raw_input.split(" ")[0]
-        return self._split_input
+        self._split_input = self._raw_input.split()
+        return self._split_input[0]
 
     def get_args(self):
         return self._split_input[1:]
