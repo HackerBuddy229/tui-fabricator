@@ -35,6 +35,7 @@ class TuiFabricator:
             self._default_error_handler("Argument error!")
             return
 
+        # handle argument type conversions
         args = ArgumentHandler.transform(selected_response.arg_types, raw_args)
 
         # execute if all is correct
@@ -44,9 +45,9 @@ class TuiFabricator:
             selected_response.f()
 
     def query_repeat(self, exit_condition):
+        # while the exit condition is True it will keep asking the same question
         while exit_condition[0]:
             self.query()
-            # TODO: Fix exit condition
 
     def _show_menu(self):
         pass

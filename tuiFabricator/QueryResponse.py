@@ -11,5 +11,3 @@ class QueryResponse:
         self.num_args = num_args
         self.arg_types = arg_types
         self.f = f
-
-        # TODO: validate arg_types

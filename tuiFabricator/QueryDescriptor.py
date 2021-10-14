@@ -4,6 +4,7 @@ class QueryDescriptor:
     showPrompt = False
     prompt = "?>"
 
+    # Create query descriptor with showMenu = True
     @staticmethod
     def with_show_menu(do_prompt, prompt="?>"):
         q = QueryDescriptor()
@@ -12,9 +13,9 @@ class QueryDescriptor:
         q.showPrompt = do_prompt
         q.prompt = prompt
 
+    # Create query descriptor with showMenu = False
     @staticmethod
     def prompt_only(prompt="?>"):
         q = QueryDescriptor()
         q.showPrompt = True
         q.prompt = prompt
-
