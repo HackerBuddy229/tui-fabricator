@@ -1,5 +1,5 @@
-from UserResponse import UserResponse
-from ArgumentHandler import ArgumentHandler
+from tuiFabricator.UserResponse import UserResponse
+from tuiFabricator.ArgumentHandler import ArgumentHandler
 
 
 class TuiFabricator:
